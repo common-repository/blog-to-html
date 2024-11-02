@@ -1,0 +1,103 @@
+From
+
+https://superuser.com/questions/294978/transform-linked-images-to-embedded-images?newreg=6c473b84e87643bbbf9046a9949f8aac 
+
+In Word 2010:
+
+Click File > Info > Edit Links To Files (Edit Links is in the Related Documents section on the bottom right). This opens the Links dialog.
+
+Select all the links in Links dialog, and then click Break Link.
+
+Note: Edit Links To Files only shows once a document has been saved to disk, and when the document contains links to other files.
+shareeditflag
+	
+answered Oct 31 '16 at 12:41
+Ags1
+1411
+	
+   	
+  	
+	
+I wonder how I could not find it on my own. – Andreas Reiff Jul 31 '17 at 13:14
+   	 
+	
+It appears to me that you have to use the "save picture in document" on the "Links" dialog. So select all links (click on the first one, scroll to bottom of link list, Ctrl+click to select all) then select the "Save picture in document" checkbox (bottom left of Links dialog). Click OK. Then wait a while until all pictures are downloaded into the document and you are returned to the File, Info page. Return to doc and click on a picture, and the URL will not be displayed on bottom left of window. Note that if you go the Links dialog again, the source URLs will still be there, but pix are local. – Rick Hellewell 11 secs ago  
+
+Current CSS mods:
+
+<style type="text/css">
+body {
+	color: #000 !important;
+	background-color: #fff !important;
+	font: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+}
+.blog2html_h1 {
+	page-break-before: always;
+	float:left;
+}	/* H1 class */
+.blog2html_h2 {
+}	/* H2 class */
+.blog2html_div {
+}	/* DIV class */
+.blog2html_p {
+	text-indent: 10px;
+}		/* P class */
+.blog2html_img {
+	float: left;
+	margin: 10px;
+	padding: 10px;
+}	/* IMG class */
+hr {display:none;}
+</style>
+
+
+
+Word Macro to apply border to all pix from https://stackoverflow.com/questions/38305617/apply-a-picture-style-to-all-pictures-in-a-word-document
+
+Sub FormatPictureWithLineAndShadow()
+Dim oInlineShp As InlineShape
+For Each oInlineShp In Selection.InlineShapes
+    With oInlineShp
+    'Line border
+        With .Borders(wdBorderLeft)
+            .LineStyle = wdLineStyleSingle
+            .LineWidth = wdLineWidth075pt
+            .Color = wdColorAutomatic
+        End With
+        With .Borders(wdBorderRight)
+            .LineStyle = wdLineStyleSingle
+            .LineWidth = wdLineWidth075pt
+            .Color = wdColorAutomatic
+        End With
+        With .Borders(wdBorderTop)
+            .LineStyle = wdLineStyleSingle
+            .LineWidth = wdLineWidth075pt
+            .Color = wdColorAutomatic
+        End With
+        With .Borders(wdBorderBottom)
+            .LineStyle = wdLineStyleSingle
+            .LineWidth = wdLineWidth075pt
+            .Color = wdColorAutomatic
+        End With
+        ' shadow
+            .Shadow.Style = msoShadowStyleOuterShadow
+            .Shadow.Type = msoShadow21
+            .Shadow.ForeColor = WdColor.wdColorBlack
+            .Shadow.Transparency = 0.6
+            .Shadow.Size = 100
+            .Shadow.Blur = 5
+            .Shadow.OffsetX = 3
+            .Shadow.OffsetY = 3
+            ' reflection
+            .Reflection.Type = msoReflectionTypeNone
+            ' glow
+            .Glow.Radius = 0
+            .SoftEdge.Radius = 0
+End With
+    Next
+End Sub
+
+
+Formatting Word Doc for Lulu printing: http://connect.lulu.com/en/discussion/33493
+
